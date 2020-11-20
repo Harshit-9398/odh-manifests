@@ -1,3 +1,17 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app: jupyterhub
+  name: jupyterhub-crole
+rules:
+- apiGroups:
+  - ''
+  resources:
+  - secrets
+  verbs:
+  - get
+---
 apiVersion: authorization.openshift.io/v1
 kind: Role
 metadata:
@@ -16,11 +30,24 @@ rules:
   - watch
 - apiGroups:
   - ''
+  - objectbucket.io
+  resources:
+  - objectbucketclaims
+  verbs:
+  - get
+  - list
+  - create
+  - update
+  - delete
+  - watch
+- apiGroups:
+  - ''
   resources:
   - configmaps
   - persistentvolumeclaims
   - pods
   - services
+  - secrets
   verbs:
   - create
   - delete
