@@ -15,3 +15,4 @@ spec:
     name: latest
     referencePolicy:
       type: Source
+ testing
